@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app/data/cart_items_added.dart';
 import 'package:grocery_app/features/home/bloc/home_bloc.dart';
 import 'package:grocery_app/features/home/model/product_data_model.dart';
 
-import '../../cart/bloc/cart_bloc.dart';
-class ProductTileWidget extends StatelessWidget {
+import '../bloc/cart_bloc.dart';
+class CartTileWidget extends StatelessWidget {
   final ProductDataModel productDataModel;
-  final HomeBloc homeBloc;
-  const ProductTileWidget({super.key, required this.productDataModel, required this.homeBloc});
+  final CartBloc cartBloc;
+  const CartTileWidget({super.key, required this.productDataModel, required this.cartBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class ProductTileWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
               image: DecorationImage(
                   image: NetworkImage(productDataModel.imageUrl),
-                fit: BoxFit.cover
+                  fit: BoxFit.cover
 
               ),
             ),
@@ -42,15 +43,11 @@ class ProductTileWidget extends StatelessWidget {
               Row(
                 children: [
                   IconButton(onPressed: (){
-                    homeBloc.add(HomeProductCartButtonClickedEvent(
-                        clickedProduct: productDataModel
-                    ));
-                  }, icon: Icon(Icons.favorite_border)),
-                  IconButton(onPressed: (){
-                    homeBloc.add(HomeProductCartButtonClickedEvent(
-                      clickedProduct: productDataModel
-                    ));
-                  }, icon: Icon(Icons.shopping_cart_outlined)),
+                    cartBloc.add(CartRemoveFromCartEvent(cartItemRemove: productDataModel));
+                    // cartBloc.add(HomeProductCartButtonClickedEvent(
+                    //     clickedProduct: productDataModel
+                    // ));
+                  }, icon: Icon(Icons.shopping_cart)),
                 ],
               )
             ],
