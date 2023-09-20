@@ -21,7 +21,7 @@ To run this app locally, follow these steps:
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/yourusername/grocery-app.git
+   git clone https://github.com/AsifAli119/Grocery-App.git
 Navigate to the project directory:
 
 bash
